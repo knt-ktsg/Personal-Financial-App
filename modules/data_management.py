@@ -1,5 +1,5 @@
 import pandas as pd
-
+from datetime import datetime
 
 def display_main_menu():
     print("=== Personal Finance Tracker ===")
@@ -39,3 +39,39 @@ def view_transactions(df):
     else:
         return print(df)
 
+
+def view_transactions_date(df):
+    if df is None or df.empty:
+        print("There is no data to display.")
+        return
+
+    def validate_format(date):
+        try:
+            datetime.strptime(date, "%Y-%m-%d")
+            return True
+        except ValueError:
+            return False
+
+    while True:
+        start = input("Enter the start date (YYYY-MM-DD): ")
+        if validate_format(start):
+            break
+        else:
+            print("Invalid input!")
+            continue
+
+    while True:
+        end = input("Enter the end date (YYYY-MM-DD): ")
+        if validate_format(end):
+            break
+        else:
+            print("Invalid input!")
+            continue
+
+    print(f"\n--- Transactions from {start} to {end} ---")
+    date_range = df[(df['Date'] >= start) & (df['Date'] <= end)]
+
+    if date_range.empty:
+        print("No transactions found in this date range.")
+    else:
+        return print(date_range)

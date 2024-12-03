@@ -16,6 +16,11 @@ def main():
             input("Press 'Enter' to return to the main menu...")
             print("")
 
+        elif choose_option == "2":
+            data_management.view_transactions_date(df)
+            input("Press 'Enter' to return to the main menu...")
+            print("")
+
         elif choose_option == "11":
             print("Exiting the Personal Finance Tracker. Goodbye!")
             break
