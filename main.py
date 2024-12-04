@@ -21,6 +21,16 @@ def main():
             input("Press 'Enter' to return to the main menu...")
             print("")
 
+        elif choose_option == "3":
+            df = data_management.add_transactions(df)
+            input("Press 'Enter' to return to the main menu...")
+            print("")
+
+        elif choose_option == "5":
+            df = data_management.delete_transaction(df)
+            input("Press 'Enter' to return to the main menu...")
+            print("")
+
         elif choose_option == "11":
             print("Exiting the Personal Finance Tracker. Goodbye!")
             break
@@ -30,3 +40,5 @@ def main():
 
 
 main()
+
+"/Users/kento/Desktop/Personal-Financial-App/sampledata.csv"

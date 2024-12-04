@@ -1,5 +1,6 @@
 import pandas as pd
 from datetime import datetime
+import re
 
 def display_main_menu():
     print("=== Personal Finance Tracker ===")
@@ -37,20 +38,25 @@ def view_transactions(df):
     elif df.empty:
         print("The Dataframe is empty.")
     else:
-        return print(df)
+        print(df)
+
+
+def validate_format(date):
+    correct_format = r'^\d{4}-\d{2}-\d{2}$'
+    if not re.match(correct_format, date):
+        return False
+
+    try:
+        datetime.strptime(date, "%Y-%m-%d")
+        return True
+    except ValueError:
+        return False
 
 
 def view_transactions_date(df):
     if df is None or df.empty:
         print("There is no data to display.")
         return
-
-    def validate_format(date):
-        try:
-            datetime.strptime(date, "%Y-%m-%d")
-            return True
-        except ValueError:
-            return False
 
     while True:
         start = input("Enter the start date (YYYY-MM-DD): ")
@@ -74,4 +80,92 @@ def view_transactions_date(df):
     if date_range.empty:
         print("No transactions found in this date range.")
     else:
-        return print(date_range)
+        print(date_range)
+
+
+def add_transactions(df):
+    if df is None:
+        print("There is no data to display.")
+        return
+
+    new = {}
+
+    while True:
+        date = input("Enter the date (YYYY-MM-DD): ")
+        if validate_format(date):
+            new["Date"] = date
+            break
+        else:
+            print("Invalid input!")
+            continue
+
+    while True:
+        category = str(input("Enter the category: "))
+        if category.isalpha():
+            new["Category"] = category
+            break
+        else:
+            print("Invalid input! Please enter an appropriate category.")
+            continue
+
+    while True:
+        des = str(input("Enter a description: "))
+        if des.isalpha():
+            new["Description"] = des
+            break
+        else:
+            print("Invalid input! Please enter an appropriate description.")
+            continue
+
+    while True:
+        try:
+            amount = float(input("Enter the amount: "))
+            formatted_amount = round(amount, 2)
+            new["Amount"] = formatted_amount
+            break
+        except ValueError:
+            print("Invalid input! Please enter a number.")
+            continue
+
+    while True:
+        types = str(input("Enter a type: "))
+        if types.isalpha():
+            new["Type"] = types
+            break
+        else:
+            print("Invalid input! Please enter an appropriate Type.")
+            continue
+
+    add_df = pd.DataFrame([new])
+    df = pd.concat([df, add_df])
+    df = df.sort_values(by=['Date'], ignore_index=True)
+    print("Transaction added successfully!")
+    return df
+    # input("Do you want to add more transactions? (yes/no)")
+
+# def edit_transaction():
+
+
+def delete_transaction(df):
+    while True:
+        try:
+            index = int(input("Enter the index of the transaction to delete: "))
+            df = df.drop(index).reset_index(drop=True)
+            print("Transactions deleted successfully!")
+            return df
+
+        except KeyError:
+            print("Invalid input! Please enter valid index.")
+            continue
+
+        except ValueError:
+            print("Invalid input!")
+            continue
+
+
+
+
+
+
+
+
