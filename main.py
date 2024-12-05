@@ -26,6 +26,11 @@ def main():
             input("Press 'Enter' to return to the main menu...")
             print("")
 
+        elif choose_option == "4":
+            df = data_management.edit_transaction(df)
+            input("Press 'Enter' to return to the main menu...")
+            print("")
+
         elif choose_option == "5":
             df = data_management.delete_transaction(df)
             input("Press 'Enter' to return to the main menu...")

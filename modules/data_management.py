@@ -2,6 +2,7 @@ import pandas as pd
 from datetime import datetime
 import re
 
+
 def display_main_menu():
     print("=== Personal Finance Tracker ===")
     print("0. Import a CSV file\
@@ -143,7 +144,94 @@ def add_transactions(df):
     return df
     # input("Do you want to add more transactions? (yes/no)")
 
-# def edit_transaction():
+
+def edit_transaction(df):
+    if df is None:
+        print("There is no data to display.")
+        return
+
+    edit_index = None
+
+    while True:
+        try:
+            edit_index = int(input("Enter the index of the transaction to edit: "))
+            if edit_index < 0 or edit_index >= len(df):
+                raise IndexError
+            print("")
+            print("Current Transaction Details:")
+            print(df.iloc[edit_index])
+            print("")
+            break
+
+        except IndexError:
+            print("Invalid input! Please enter valid index.")
+            continue
+
+        except ValueError:
+            print("Invalid input!")
+            continue
+
+    while True:
+        edit_date = input("Enter new date (YYYY-MM-DD) or press Enter to keep current: ")
+        if validate_format(edit_date):
+            df.loc[edit_index, "Date"] = edit_date
+            break
+        elif edit_date == "":
+            break
+        else:
+            print("Invalid input! Please enter valid date.")
+            continue
+
+    while True:
+        edit_category = str(input("Enter new category or press Enter to keep current: "))
+        if edit_category.isalpha():
+            df.loc[edit_index, "Category"] = edit_category
+            break
+        elif edit_category == "":
+            break
+        else:
+            print("Invalid input! Please enter an appropriate category.")
+            continue
+
+    while True:
+        edit_des = str(input("Enter new description or press Enter to keep current: "))
+        if edit_des.isalpha():
+            df.loc[edit_index, "Description"] = edit_des
+            break
+        elif edit_des == "":
+            break
+        else:
+            print("Invalid input! Please enter an appropriate description.")
+            continue
+
+    while True:
+        edit_amount = input("Enter new amount or press Enter to keep current: ")
+        if edit_amount == "":
+            break
+        try:
+            edit_amount = float(edit_amount)
+            formatted_amount = round(edit_amount, 2)
+            df.loc[edit_index, "Amount"] = formatted_amount
+            break
+
+        except ValueError:
+            print("Invalid input! Please enter a number.")
+            continue
+
+    while True:
+        edit_types = str(input("Enter new type or press Enter to keep current: "))
+        if edit_types.isalpha():
+            df.loc[edit_index, "Type"] = edit_types
+            break
+        elif edit_types == "":
+            break
+        else:
+            print("Invalid input! Please enter an appropriate Type.")
+            continue
+
+    print("Transaction updated successfully!")
+    df = df.sort_values(by=['Date'], ignore_index=True)
+    return df
 
 
 def delete_transaction(df):
@@ -155,17 +243,4 @@ def delete_transaction(df):
             return df
 
         except KeyError:
-            print("Invalid input! Please enter valid index.")
-            continue
-
-        except ValueError:
-            print("Invalid input!")
-            continue
-
-
-
-
-
-
-
-
+            print("Invalid input! Please enter valid ind
