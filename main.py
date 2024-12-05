@@ -1,5 +1,7 @@
 from modules import data_management
 from modules import data_analysis
+from modules import data_visualization
+
 
 def main():
     df = None
@@ -36,6 +38,9 @@ def main():
         elif choose_option == "8":
             data_analysis.top_spending(df)
 
+        elif choose_option == "9":
+            data_visualization.visualize_spending_trend(df)
+
         elif choose_option == "11":
             print("Exiting the Personal Finance Tracker. Goodbye!")
             break
@@ -48,5 +53,3 @@ def main():
 
 
 main()
-
-"/Users/kento/Desktop/Personal-Financial-App/sampledata.csv"

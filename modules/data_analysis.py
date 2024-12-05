@@ -21,5 +21,3 @@ def top_spending(df):
     category = max_row['Category'].to_string(index=None).replace(" ", "")
     max_amount = max_row['Amount'].to_string(index=None).replace(" ", "")
     print(f"{category} with {max_amount} total spending.")
-
-

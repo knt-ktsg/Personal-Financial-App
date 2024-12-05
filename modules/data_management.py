@@ -249,11 +249,3 @@ def delete_transaction(df):
         except ValueError:
             print("Invalid input!")
             continue
-
-
-
-
-
-
-
-
