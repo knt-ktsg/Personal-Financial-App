@@ -159,7 +159,7 @@ def edit_transaction(df):
                 raise IndexError
             print("")
             print("Current Transaction Details:")
-            print(df.iloc[edit_index])
+            print(df.iloc[edit_index].to_string())
             print("")
             break
 
@@ -243,4 +243,17 @@ def delete_transaction(df):
             return df
 
         except KeyError:
-            print("Invalid input! Please enter valid ind
+            print("Invalid input! Please enter valid index.")
+            continue
+
+        except ValueError:
+            print("Invalid input!")
+            continue
+
+
+
+
+
+
+
+
