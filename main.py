@@ -17,8 +17,6 @@ def main():
 
         elif choose_option == "2":
             data_management.view_transactions_date(df)
-            input("Press 'Enter' to return to the main menu...")
-            print("")
 
         elif choose_option == "3":
             df = data_management.add_transactions(df)
@@ -63,6 +61,7 @@ def main():
 
         else:
             print("Invalid input! Please enter 1 ~ 11.")
+            continue
 
         input("Press 'Enter' to return to the main menu...")
         print("")
