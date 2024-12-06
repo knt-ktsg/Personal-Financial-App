@@ -24,7 +24,7 @@ category, description, amount).
 * **Analyze Spending by Category:** Display total spending for each category.
 * **Calculate Average Monthly Spending:** Show average spending per month.
 * **Show Top Spending Category:** Identify the category with the highest total spending.
-* 
+
 **4. Data Visualization**
 * **Monthly Spending Trend:** Visualize spending trends over time using a line
 chart. 
