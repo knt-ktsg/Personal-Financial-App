@@ -10,7 +10,7 @@ def analyze_spending(df):
 def calculate_monthly_spending(df):
     print("--- Average Monthly Spending ---")
     df['Date'] = pd.to_datetime(df['Date'])
-    average_spending = df.groupby(df['Date'].dt.month)['Amount'].mean()
+    average_spending = df.groupby(df['Date'].dt.month)['Amount'].mean().round(2)
     average_spending.index.name = None
     print(average_spending.to_string())
 

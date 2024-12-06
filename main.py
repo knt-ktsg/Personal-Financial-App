@@ -39,7 +39,20 @@ def main():
             data_analysis.top_spending(df)
 
         elif choose_option == "9":
-            data_visualization.visualize_spending_trend(df)
+            while True:
+                selection = data_visualization.select_visualization()
+                if selection == "1":
+                    data_visualization.visualize_spending_trend(df)
+                    break
+                elif selection == "2":
+                    data_visualization.visualize_spending_category(df)
+                    break
+                elif selection == "3":
+                    data_visualization.visualize_percentage(df)
+                    break
+                else:
+                    print("Invalid input! Please select 1 ~ 3.")
+                    continue
 
         elif choose_option == "11":
             print("Exiting the Personal Finance Tracker. Goodbye!")
