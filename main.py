@@ -54,6 +54,9 @@ def main():
                     print("Invalid input! Please select 1 ~ 3.")
                     continue
 
+        elif choose_option == "10":
+            data_management.save_csv(df)
+
         elif choose_option == "11":
             print("Exiting the Personal Finance Tracker. Goodbye!")
             break

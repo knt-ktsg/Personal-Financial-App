@@ -142,7 +142,6 @@ def add_transactions(df):
     df = df.sort_values(by=['Date'], ignore_index=True)
     print("Transaction added successfully!")
     return df
-    # input("Do you want to add more transactions? (yes/no)")
 
 
 def edit_transaction(df):
@@ -249,3 +248,17 @@ def delete_transaction(df):
         except ValueError:
             print("Invalid input!")
             continue
+
+
+def save_csv(df):
+    while True:
+        csv_name = input("Enter file name to save (e.g., 'transaction.csv'): ")
+        if csv_name.strip():
+            try:
+                df.to_csv(csv_name, index=False)
+                print(f"Transactions saved to {csv_name} successfully!")
+                break
+            except Exception as e:  
+                print(f"An error occurred: {e}. Please try again.")
+        else:
+            print("Invalid Input! Please enter a valid file name.")
