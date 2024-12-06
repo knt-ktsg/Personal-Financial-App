@@ -1,11 +1,11 @@
-# Personal-Financial-App
+# Personal Finance Tracker App
 
 ## Overview
 The Personal Finance Tracker App is an application that helps users manage and analyze their spending habits. 
 Users can import a CSV file containing transaction data, perform operations like viewing, adding,
 editing, and deleting transactions, and analyze spending patterns. 
 The app also includes data visualization capabilities, displaying monthly spending trends and top spending categories. 
-This application is built using Python and uses libraries like Pandas for data handling, and Matplotlib, and Seaborn for visualization.
+This application is built using Python and uses libraries like Pandas for data handling, Matplotlib, and Seaborn for visualization.
 
 ## Features
 **1. File import Functionality**
