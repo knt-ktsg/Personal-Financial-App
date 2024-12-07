@@ -1,5 +1,6 @@
 import pandas as pd
-import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 def set_monthly_income():
@@ -16,6 +17,7 @@ def set_monthly_income():
         except ValueError:
             print("Invalid input! Please enter the number.")
             continue
+
 
 def set_category_budget():
     food_budget = 0
@@ -84,3 +86,20 @@ def set_category_budget():
 
 
 # def check_budget_status():
+
+
+# Visualization
+def monthly_income_spending(df):
+    df['Date'] = pd.to_datetime(df['Date'])
+    monthly = df.groupby([df['Date'].dt.month, "Category"])['Amount'].sum().unstack(fill_value=0).reset_index()
+    monthly = monthly.melt(id_vars=['Date'], var_name='Category', value_name='Amount')
+    monthly_income = monthly[monthly["Category"] == "Income"]
+    monthly_spending = monthly[monthly["Category"] != "Income"].groupby("Date")["Amount"].sum()
+    monthly_spending = pd.DataFrame(monthly_spending).reset_index()
+    sns.lineplot(data=monthly_income, x="Date", y="Amount", label="Total Income")
+    sns.lineplot(data=monthly_spending, x="Date", y="Amount", label="Total Spending")
+    plt.title("Monthly Income vs Spending")
+    plt.xlabel("Months")
+    plt.ylabel("Amount")
+    plt.tight_layout()
+    plt.show()
