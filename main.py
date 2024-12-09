@@ -72,7 +72,6 @@ def main():
             print("Invalid input! Please enter 1 ~ 11.")
             continue
 
-        input("Press 'Enter' to return to the main menu...")
         print("")
 
 
