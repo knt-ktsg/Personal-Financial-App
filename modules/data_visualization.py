@@ -3,10 +3,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-def select_visualization():
+def select_visualization(df):
     print("1. Monthly Spending Category\
           \n2. Spending by Category\
-          \n3. Percentage Distribution")
+          \n3. Percentage Distribution\
+          \n4. Spending Trend")
     selection = input("Which graph do you want to see? Please select 1~3: ")
     return selection
 
