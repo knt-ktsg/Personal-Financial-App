@@ -28,8 +28,9 @@ category, description, amount).
 **4. Data Visualization**
 * **Monthly Spending Trend:** Visualize spending trends over time using a line
 chart. 
-* **Spending by Category:** Create a bar chart showing total spending by category.
-* **Percentage Distribution:** Generate a pie chart representing the distribution of spending across categories.
+* **Spending by Category:** Visualize total spending by category using a bar chart.
+* **Percentage Distribution:** Generate a pie chart to represent the distribution of spending across categories.
+* **Spending Trends:** Generate a line chart to compare monthly income and total spending.
 
 **5. Save Transactions to CSV:** 
 * Save the updated list of transactions to a CSV file, maintaining a record of

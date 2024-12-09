@@ -39,7 +39,7 @@ def main():
 
         elif choose_option == "9":
             if df is None:
-                print("There is no data to display.")
+                print("There is no data.")
                 print("")
                 continue
 

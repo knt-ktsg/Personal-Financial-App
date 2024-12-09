@@ -86,7 +86,7 @@ def view_transactions_date(df):
 
 def add_transactions(df):
     if df is None:
-        print("There is no data to display.")
+        print("There is no data.")
         return
 
     new = {}
@@ -146,7 +146,7 @@ def add_transactions(df):
 
 def edit_transaction(df):
     if df is None:
-        print("There is no data to display.")
+        print("There is no data to edit.")
         return
 
     edit_index = None
@@ -234,6 +234,10 @@ def edit_transaction(df):
 
 
 def delete_transaction(df):
+    if df is None or df.empty:
+        print("There is no data to delete.")
+        return
+
     while True:
         try:
             index = int(input("Enter the index of the transaction to delete: "))

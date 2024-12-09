@@ -3,7 +3,7 @@ import pandas as pd
 
 def analyze_spending(df):
     if df is None:
-        print("There is no data to display.")
+        print("There is no data to analyze.")
         return
 
     print("--- Total Spending by Category ---")
@@ -13,7 +13,7 @@ def analyze_spending(df):
 
 def calculate_monthly_spending(df):
     if df is None:
-        print("There is no data to display.")
+        print("There is no data to analyze.")
         return
 
     print("--- Average Monthly Spending ---")
@@ -25,7 +25,7 @@ def calculate_monthly_spending(df):
 
 def top_spending(df):
     if df is None:
-        print("There is no data to display.")
+        print("There is no data to analyze.")
         return
 
     print("--- Top Spending category ---")
