@@ -4,8 +4,18 @@
 The Personal Finance Tracker App is an application that helps users manage and analyze their spending habits. 
 Users can import a CSV file containing transaction data, perform operations like viewing, adding,
 editing, and deleting transactions, and analyze spending patterns. 
-The app also includes data visualization capabilities, displaying monthly spending trends and top spending categories. 
+The app also includes data visualization capabilities, displaying monthly spending trends, top spending categories, and comparing monthly income and spending.
 This application is built with Python and uses libraries like Pandas for data handling, Matplotlib, and Seaborn for visualization.
+
+## :wrench: Installation
+1. Clone the repository:
+   ```bash
+   git clone git@github.com:knt-ktsg/Personal-Financial-App.git
+   
+## :computer: Usage
+1. Run the following command to start the application:
+   ```bash
+   python main.py
 
 ## :gear: Features
 **1. File import Functionality**
@@ -35,16 +45,6 @@ chart.
 **5. Save Transactions to CSV:** 
 * Save the updated list of transactions to a CSV file, maintaining a record of
 financial data.
-
-## :wrench: Installation
-1. Clone the repository:
-   ```bash
-   git clone git@github.com:knt-ktsg/Personal-Financial-App.git
-   
-## :computer: Usage
-1. Run the following command to start the application:
-   ```bash
-   python main.py
 
 ## :lock: License
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/knt-ktsg/Personal-Financial-App/blob/main/LICENSE) file for details.
