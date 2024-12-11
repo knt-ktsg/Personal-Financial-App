@@ -1,5 +1,7 @@
 # :chart_with_upwards_trend: Personal Finance Tracker App
 
+![Images](https://images.pexels.com/photos/6694543/pexels-photo-6694543.jpeg?auto=compress&cs=tinysrgb&w=1200)
+
 ## :books: Description
 The Personal Finance Tracker App is an application that helps users manage and analyze their spending habits. 
 Users can import a CSV file containing transaction data, perform operations like viewing, adding,
