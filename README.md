@@ -13,6 +13,10 @@ This application is built with Python and uses libraries like Pandas for data ha
 1. Clone the repository:
    ```bash
    git clone git@github.com:knt-ktsg/Personal-Financial-App.git
+
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
    
 ## :computer: Usage
 1. Run the following command to start the application:
