@@ -1,6 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 
 def set_monthly_income():
@@ -9,6 +7,7 @@ def set_monthly_income():
             set_income = float(input("Enter your total monthly income: "))
             if set_income >= 0:
                 print(f"Your monthly income is set to: ${set_income}")
+                print("")
                 break
             else:
                 print("The income has to be positive number.")
@@ -83,23 +82,47 @@ def set_category_budget():
     print(f"- Rent: ${rent_budget}")
     print(f"- Utilities: ${utilities_budget}")
     print(f"- Transport: ${transport_budget}")
+    print("")
 
 
-# def check_budget_status():
+def check_budget_status(df):
+    month = None
+    while True:
+        try:
+            month = int(input("Enter the month you want to compare actual spending and budget: "))
+            if month in range(1, 13):
+                break
+            else:
+                print("Invalid input! Please enter the corrct month from 1 to 12.")
 
+        except ValueError:
+            print("Invalid input! Please enter a number.")
+            continue
 
-# Visualization
-def monthly_income_spending(df):
+    df = df[df['Category'] != "Income"]
     df['Date'] = pd.to_datetime(df['Date'])
-    monthly = df.groupby([df['Date'].dt.month, "Category"])['Amount'].sum().unstack(fill_value=0).reset_index()
-    monthly = monthly.melt(id_vars=['Date'], var_name='Category', value_name='Amount')
-    monthly_income = monthly[monthly["Category"] == "Income"]
-    monthly_spending = monthly[monthly["Category"] != "Income"].groupby("Date")["Amount"].sum()
-    monthly_spending = pd.DataFrame(monthly_spending).reset_index()
-    sns.lineplot(data=monthly_income, x="Date", y="Amount", label="Total Income")
-    sns.lineplot(data=monthly_spending, x="Date", y="Amount", label="Total Spending")
-    plt.title("Monthly Income vs Spending")
-    plt.xlabel("Months")
-    plt.ylabel("Amount")
-    plt.tight_layout()
-    plt.show()
+    check_budget = df.groupby([df['Date'].dt.month, "Category"])['Amount'].sum().unstack(
+        fill_value=0).reset_index().rename(columns={'Date': 'Month'}).set_index("Month")
+
+    name = {"January": 1, "Febrary": 2, "March": 3, "April": 4, "May": 5, "June": 6,
+            "July": 7, "August": 8, "September": 9, "October": 10, "November": 11, "December": 12}
+
+    index = month
+    result = check_budget.index
+    spending_month = list(pd.Index(result))
+
+    if index in spending_month:
+        spending = check_budget.loc[[index]]
+        print("")
+        print("--- Budget Status ---")
+        print(f"Month: {spending.index[0]}")
+        print(f"- Food: ${spending.Food.iloc[0]}")
+        print(f"- Rent: ${spending.Rent.iloc[0]}")
+        print(f"- Utilities: ${spending.Utilities.iloc[0]}")
+        print(f"- Transport: ${spending.Transport.iloc[0]}")
+
+    else:
+        for month_name, month_num in name.items():
+            if month == month_num:
+                print(f"There is no transaction in {month_name}.")
+                break

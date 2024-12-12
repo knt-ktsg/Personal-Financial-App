@@ -49,3 +49,19 @@ def visualize_percentage(df):
     plt.legend(labels, loc="center")
     plt.tight_layout()
     plt.show()
+
+# Extended features
+def monthly_income_spending(df):
+    df['Date'] = pd.to_datetime(df['Date'])
+    monthly = df.groupby([df['Date'].dt.month, "Category"])['Amount'].sum().unstack(fill_value=0).reset_index()
+    monthly = monthly.melt(id_vars=['Date'], var_name='Category', value_name='Amount')
+    monthly_income = monthly[monthly["Category"] == "Income"]
+    monthly_spending = monthly[monthly["Category"] != "Income"].groupby("Date")["Amount"].sum()
+    monthly_spending = pd.DataFrame(monthly_spending).reset_index()
+    sns.lineplot(data=monthly_income, x="Date", y="Amount", label="Total Income")
+    sns.lineplot(data=monthly_spending, x="Date", y="Amount", label="Total Spending")
+    plt.title("Monthly Income vs Spending")
+    plt.xlabel("Months")
+    plt.ylabel("Amount")
+    plt.tight_layout()
+    plt.show()
