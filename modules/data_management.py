@@ -138,8 +138,7 @@ def add_transactions(df):
             continue
 
     add_df = pd.DataFrame([new])
-    df = pd.concat([df, add_df])
-    df = df.sort_values(by=['Date'], ignore_index=True)
+    df = pd.concat([df, add_df]).sort_values(by=['Date'], ignore_index=True)
     print("Transaction added successfully!")
     return df
 
@@ -229,7 +228,7 @@ def edit_transaction(df):
             continue
 
     print("Transaction updated successfully!")
-    df = df.sort_values(by=['Date'], ignore_index=True)
+    df.sort_values(by=['Date'], ignore_index=True)
     return df
 
 
@@ -241,11 +240,27 @@ def delete_transaction(df):
     while True:
         try:
             index = int(input("Enter the index of the transaction to delete: "))
-            df = df.drop(index).reset_index(drop=True)
-            print("Transactions deleted successfully!")
-            return df
+            if index < 0 or index >= len(df):
+                raise IndexError
 
-        except KeyError:
+            while True:
+                print("")
+                print("Current Transaction Details:")
+                print(df.iloc[index].to_string())
+                print("")
+                ans = input("Do you want to delete this transaction? (yes/no): ").strip().lower()
+                if ans == "yes":
+                    df = df.drop(index).reset_index(drop=True)
+                    print("Transactions deleted successfully!")
+                    return df
+                elif ans == "no":
+                    print("Transaction not deleted.")
+                    return df
+                else:
+                    print("Invalid input! Please enter yes/no.")
+                    continue
+
+        except IndexError:
             print("Invalid input! Please enter valid index.")
             continue
 

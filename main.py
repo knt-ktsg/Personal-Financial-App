@@ -1,7 +1,6 @@
 from modules import data_management
 from modules import data_analysis
 from modules import data_visualization
-from modules import budget_management
 
 
 def main():
@@ -55,7 +54,7 @@ def main():
                     data_visualization.visualize_percentage(df)
                     break
                 elif selection == "4":
-                    budget_management.monthly_income_spending(df)
+                    data_visualization.monthly_income_spending(df)
                     break
                 else:
                     print("Invalid input! Please select 1 ~ 3.")

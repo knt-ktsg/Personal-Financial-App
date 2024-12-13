@@ -104,7 +104,7 @@ def check_budget_status(df):
     check_budget = df.groupby([df['Date'].dt.month, "Category"])['Amount'].sum().unstack(
         fill_value=0).reset_index().rename(columns={'Date': 'Month'}).set_index("Month")
 
-    name = {"January": 1, "Febrary": 2, "March": 3, "April": 4, "May": 5, "June": 6,
+    name = {"January": 1, "February": 2, "March": 3, "April": 4, "May": 5, "June": 6,
             "July": 7, "August": 8, "September": 9, "October": 10, "November": 11, "December": 12}
 
     index = month
@@ -120,6 +120,7 @@ def check_budget_status(df):
         print(f"- Rent: ${spending.Rent.iloc[0]}")
         print(f"- Utilities: ${spending.Utilities.iloc[0]}")
         print(f"- Transport: ${spending.Transport.iloc[0]}")
+        print("")
 
     else:
         for month_name, month_num in name.items():
