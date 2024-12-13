@@ -39,10 +39,10 @@ def main():
             data_analysis.top_spending(df)
 
         elif choose_option == "9":
-            budget_management.set_monthly_income()
+            budget_management.set_monthly_income(df)
 
         elif choose_option == "10":
-            categories = budget_management.set_category_budget()
+            categories = budget_management.set_category_budget(df)
 
         elif choose_option == "11":
             if not categories:
