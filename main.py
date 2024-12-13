@@ -1,10 +1,12 @@
 from modules import data_management
 from modules import data_analysis
 from modules import data_visualization
+from modules import budget_management
 
 
 def main():
     df = None
+    categories = {}
     while True:
         choose_option = data_management.display_main_menu()
         if choose_option == "0":
@@ -37,6 +39,18 @@ def main():
             data_analysis.top_spending(df)
 
         elif choose_option == "9":
+            budget_management.set_monthly_income()
+
+        elif choose_option == "10":
+            categories = budget_management.set_category_budget()
+
+        elif choose_option == "11":
+            if not categories:
+                print("Please set the category budget first (option 10).")
+            else:
+                budget_management.check_budget_status(df, categories)
+
+        elif choose_option == "12":
             if df is None:
                 print("There is no data.")
                 print("")
@@ -57,18 +71,18 @@ def main():
                     data_visualization.monthly_income_spending(df)
                     break
                 else:
-                    print("Invalid input! Please select 1 ~ 3.")
+                    print("Invalid input! Please select 1 ~ 4.")
                     continue
 
-        elif choose_option == "10":
+        elif choose_option == "13":
             data_management.save_csv(df)
 
-        elif choose_option == "11":
+        elif choose_option == "14":
             print("Exiting the Personal Finance Tracker. Goodbye!")
             break
 
         else:
-            print("Invalid input! Please enter 1 ~ 11.")
+            print("Invalid input! Please enter 1 ~ 14.")
             continue
 
         print("")

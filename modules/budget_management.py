@@ -19,74 +19,31 @@ def set_monthly_income():
 
 
 def set_category_budget():
-    food_budget = 0
-    rent_budget = 0
-    utilities_budget = 0
-    transport_budget = 0
+    global categories
+    categories = {"Food": 0, "Rent": 0, "Utilities": 0, "Transport": 0}
+    for category in categories:
+        while True:
+            try:
+                budget = float(input(f"Enter your budget for {category}: "))
+                if budget >= 0:
+                    categories[category] = budget
+                    break
+                else:
+                    print("The budget has to be positive number.")
 
-    while True:
-        try:
-            food_budget = float(input("Enter your budget for Food: "))
-            if food_budget >= 0:
-                break
-            else:
-                print("The budget has to be positive number.")
-                continue
-
-        except ValueError:
-            print("Invalid input! Please enter the number.")
-            continue
-
-    while True:
-        try:
-            rent_budget = float(input("Enter your budget for Rent: "))
-            if rent_budget >= 0:
-                break
-            else:
-                print("The budget has to be positive number.")
-                continue
-
-        except ValueError:
-            print("Invalid input! Please enter the number.")
-            continue
-
-    while True:
-        try:
-            utilities_budget = float(input("Enter your budget for Utilities: "))
-            if utilities_budget >= 0:
-                break
-            else:
-                print("The budget has to be positive number.")
-                continue
-
-        except ValueError:
-            print("Invalid input! Please enter the number.")
-            continue
-
-    while True:
-        try:
-            transport_budget = float(input("Enter your budget for Transport: "))
-            if transport_budget >= 0:
-                break
-            else:
-                print("The budget has to be positive number.")
-                continue
-
-        except ValueError:
-            print("Invalid input! Please enter the number.")
-            continue
+            except ValueError:
+                print("Invalid input! Please enter a valid number.")
 
     print("")
     print("Your budgets have been set:")
-    print(f"- Food: ${food_budget}")
-    print(f"- Rent: ${rent_budget}")
-    print(f"- Utilities: ${utilities_budget}")
-    print(f"- Transport: ${transport_budget}")
-    print("")
+    for category, amount in categories.items():
+        print(f"- {category}: ${amount}")
+
+    return categories
 
 
-def check_budget_status(df):
-    month = None
+def check_budget_status(df, categories):
+    warning = ["(Exact: Budget met!)", "(Alert: Exceeded budget!)", "(Warning: Close to budget!)"]
     while True:
         try:
             month = int(input("Enter the month you want to compare actual spending and budget: "))
@@ -113,14 +70,21 @@ def check_budget_status(df):
 
     if index in spending_month:
         spending = check_budget.loc[[index]]
+
         print("")
         print("--- Budget Status ---")
-        print(f"Month: {spending.index[0]}")
-        print(f"- Food: ${spending.Food.iloc[0]}")
-        print(f"- Rent: ${spending.Rent.iloc[0]}")
-        print(f"- Utilities: ${spending.Utilities.iloc[0]}")
-        print(f"- Transport: ${spending.Transport.iloc[0]}")
-        print("")
+        for category, budget in categories.items():
+            amount = spending.get(category)
+            if amount == budget:
+                message = warning[0]
+            elif amount > budget:
+                message = warning[1]
+            elif amount >= budget * 0.9:
+                message = warning[2]
+            else:
+                message = ""
+
+            print(f"- {category}: ${amount} / ${budget} {message}")
 
     else:
         for month_name, month_num in name.items():

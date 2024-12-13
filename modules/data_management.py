@@ -14,10 +14,13 @@ def display_main_menu():
           \n6. Analyze Spending by Category\
           \n7. Calculate Average Monthly Spending\
           \n8. Show Top Spending Category\
-          \n9. Visualize Monthly Spending Trend\
-          \n10. Save Transactions to CSV\
-          \n11. Exit")
-    return input("Choose an option (0-11): ")
+          \n9. Set Monthly Income\
+          \n10. Set Category Budget\
+          \n11. Check Budget Status\
+          \n12. Visualize Monthly Spending Trend\
+          \n13. Save Transactions to CSV\
+          \n14. Exit")
+    return input("Choose an option (0-14): ")
 
 
 def import_csv(path):
