@@ -22,6 +22,23 @@ This application is built with Python and uses libraries like Pandas for data ha
 1. Run the following command to start the application:
    ```bash
    python main.py
+   
+## :file_folder: Example CSV File
+Here is an example of the CSV file format used to track your expenses and income. This file includes 5 rows of data:
+
+| Date       | Category | Description           | Amount |
+|------------|----------|-----------------------|--------|
+| 2024-01-01 | Food     | Grocery shopping      | 50.00  |
+| 2024-01-05 | Rent     | Monthly rent payment  | 900.00 |
+| 2024-01-07 | Utilities | Electricity bill      | 75.00  |
+| 2024-01-10 | Transport | Public transport pass | 40.00  |
+| 2024-01-15 | Income   | Freelance Work        | 30.00  |
+
+### Columns:
+- **Date**: The date when the transaction occurred (in `YYYY-MM-DD` format).
+- **Category**: The type of the transaction (e.g., Food, Rent, Utilities).
+- **Description**: A brief description of the transaction (e.g., "Grocery shopping").
+- **Amount**: The amount spent or earned (your preferred currency).
 
 ## :gear: Features
 **1. File import Functionality**
@@ -41,14 +58,20 @@ category, description, amount).
 * **Calculate Average Monthly Spending:** Show average spending per month.
 * **Show Top Spending Category:** Identify the category with the highest total spending.
 
-**4. Data Visualization**
+**4. Budget Management**
+* **Manage Income:** Enter income details to compare with expenses and understand your financial balance. 
+* **Set Budget:** Set a overall monthly budget for each category. (Food, Rent, Utilities, Transport)
+* **Alert with a Message:** Compare spending against the budget, and alert the user if spending is close to, exceeds or matches the budget perfectly.
+* **Provide Suggestions:** Provide suggestions based on the analysis of spending patterns.
+
+**5. Data Visualization**
 * **Monthly Spending Trend:** Visualize spending trends over time using a line
 chart. 
 * **Spending by Category:** Visualize total spending by category using a bar chart.
 * **Percentage Distribution:** Generate a pie chart to represent the distribution of spending across categories.
 * **Spending Trends:** Generate a line chart to compare monthly income and total spending.
 
-**5. Save Transactions to CSV:** 
+**6. Save Transactions to CSV:** 
 * Save the updated list of transactions to a CSV file, maintaining a record of
 financial data.
 
