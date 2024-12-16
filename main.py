@@ -6,6 +6,7 @@ from modules import budget_management
 
 def main():
     df = None
+    check_budget = None
     categories = {}
     while True:
         choose_option = data_management.display_main_menu()
@@ -43,6 +44,7 @@ def main():
 
         elif choose_option == "10":
             categories = budget_management.set_category_budget(df)
+            check_budget = budget_management.budget_data(df)
 
         elif choose_option == "11":
             if not categories:
@@ -52,8 +54,7 @@ def main():
 
         elif choose_option == "12":
             if df is None:
-                print("There is no data.")
-                print("")
+                print("There is no data.\n")
                 continue
 
             while True:
@@ -70,6 +71,14 @@ def main():
                 elif selection == "4":
                     data_visualization.monthly_income_spending(df)
                     break
+                elif selection == "5":
+                    if check_budget is None:
+                        print("Please set the category budget first (option 10).")
+                        break
+                    else:
+                        data_visualization.category_spending_budget(check_budget, categories)
+                        break
+
                 else:
                     print("Invalid input! Please select 1 ~ 4.")
                     continue

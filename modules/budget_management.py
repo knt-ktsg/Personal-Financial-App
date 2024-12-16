@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 def set_monthly_income(df):
     if df is None or df.empty:
         print("There is no data to display.")
@@ -49,6 +48,16 @@ def set_category_budget(df):
     return categories
 
 
+def budget_data(df):
+    df = df[df['Category'] != "Income"].copy()
+    df.loc[:, ['Date']] = pd.to_datetime(df['Date'])
+    df['Month'] = df['Date'].apply(lambda x: x.month)
+
+    check_budget = (df.groupby([df['Month'], "Category"])['Amount'].sum().unstack(fill_value=0)
+                    .reset_index().set_index("Month"))
+    return check_budget
+
+
 def check_budget_status(df, categories):
     if df is None or df.empty:
         print("There is no data to display.")
@@ -68,12 +77,7 @@ def check_budget_status(df, categories):
             print("Invalid input! Please enter a number.")
             continue
 
-    df = df[df['Category'] != "Income"].copy()
-    df.loc[:, ['Date']] = pd.to_datetime(df['Date'])
-    df['Month'] = df['Date'].apply(lambda x: x.month)
-
-    check_budget = (df.groupby([df['Month'], "Category"])['Amount'].sum().unstack(fill_value=0)
-                    .reset_index().set_index("Month"))
+    check_budget = budget_data(df)
 
     name = {"January": 1, "February": 2, "March": 3, "April": 4, "May": 5, "June": 6,
             "July": 7, "August": 8, "September": 9, "October": 10, "November": 11, "December": 12}
@@ -104,7 +108,7 @@ def check_budget_status(df, categories):
 
             print(f"- {category}: ${amount} / ${budget} {message}")
         print("")
-
+        print("Suggestions:")
         for suggest in suggestions:
             print("-", suggest)
 
@@ -112,4 +116,3 @@ def check_budget_status(df, categories):
         for month_name, month_num in name.items():
             if month == month_num:
                 print(f"There is no transaction in {month_name}.")
-                break
