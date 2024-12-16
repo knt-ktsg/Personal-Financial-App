@@ -8,8 +8,9 @@ def select_visualization(df):
           \n2. Spending by Category\
           \n3. Percentage Distribution\
           \n4. Spending Trend\
-          \n5. Category Spending vs Budget")
-    selection = input("Which graph do you want to see? Please select 1~5: ")
+          \n5. Category Spending vs Budget\
+          \n6. Income and Expense Distribution")
+    selection = input("Which graph do you want to see? Please select 1~6: ")
     return selection
 
 
@@ -107,3 +108,33 @@ def category_spending_budget(check_budget, categories):
 
         else:
             print("There are no transactions this month.")
+
+
+def income_expense_dist(df):
+    df = df.copy()
+    df.loc[:, ['Date']] = pd.to_datetime(df['Date'])
+    df['Month'] = df['Date'].apply(lambda x: x.month)
+
+    dist = (df.groupby([df['Month'], "Category"])['Amount'].sum().unstack(fill_value=0)
+            .reset_index().set_index("Month"))
+
+    result = dist.index
+    months = list(pd.Index(result))
+
+    num_months = len(months)
+    ncols = 4
+    nrows = (num_months + ncols - 1) // ncols
+
+    fig, ax = plt.subplots(nrows=nrows, ncols=ncols, figsize=(10, 8))
+    ax = ax.flatten()
+
+    for index, month in enumerate(months):
+        data = dist.loc[month].sort_values(ascending=False)
+        label = data.index
+        values = data.values
+        ax[index].pie(values, counterclock=False, startangle=90, labels=None)
+        ax[index].set_title(f"Month: {month}")
+        ax[index].legend(label, loc='center')
+
+    plt.tight_layout()
+    plt.show()

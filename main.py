@@ -78,7 +78,9 @@ def main():
                     else:
                         data_visualization.category_spending_budget(check_budget, categories)
                         break
-
+                elif selection == "6":
+                    data_visualization.income_expense_dist(df)
+                    break
                 else:
                     print("Invalid input! Please select 1 ~ 4.")
                     continue
