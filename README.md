@@ -70,6 +70,9 @@ chart.
 * **Spending by Category:** Visualize total spending by category using a bar chart.
 * **Percentage Distribution:** Generate a pie chart to represent the distribution of spending across categories.
 * **Spending Trends:** Generate a line chart to compare monthly income and total spending.
+* **Category Spending vs Budget:** Display category-wise spending compared to the set budget using a bar chart.
+* **Income and Expense Distribution:** Visualize the distribution of income and expenses using a pie chart for clear allocation insight.
+
 
 **6. Save Transactions to CSV:** 
 * Save the updated list of transactions to a CSV file, maintaining a record of
