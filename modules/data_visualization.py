@@ -132,9 +132,11 @@ def income_expense_dist(df):
         data = dist.loc[month].sort_values(ascending=False)
         label = data.index
         values = data.values
+        total = sum(values)
+        legend_labels = [f"{label[i]}: {values[i] / total * 100:.1f}%" for i in range(len(label))]
         ax[index].pie(values, counterclock=False, startangle=90, labels=None)
         ax[index].set_title(f"Month: {month}")
-        ax[index].legend(label, loc='center')
+        ax[index].legend(legend_labels, loc='center', labelspacing=0.2)
 
     plt.tight_layout()
     plt.show()
