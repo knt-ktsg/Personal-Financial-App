@@ -231,7 +231,7 @@ def edit_transaction(df):
             continue
 
     print("Transaction updated successfully!")
-    df.sort_values(by=['Date'], ignore_index=True)
+    df = df.sort_values(by=['Date'], ignore_index=True)
     return df
 
 
