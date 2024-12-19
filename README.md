@@ -9,6 +9,13 @@ editing, and deleting transactions, and analyze spending patterns.
 The app also includes data visualization capabilities, displaying monthly spending trends, top spending categories, and comparing monthly income and spending.
 This application is built with Python and uses libraries like Pandas for data handling, Matplotlib, and Seaborn for visualization.
 
+## :clapper: Demo
+
+You can view the demo video by clicking the link below:
+
+[Watch the Demo Video](https://drive.google.com/file/d/1sGFCOPUqPhGjhZXtTi239M5AiwsP__kn/view?usp=sharing)
+
+
 ## :wrench: Installation
 1. Clone the repository:
    ```bash
