@@ -15,7 +15,6 @@ You can view the demo video by clicking the link below:
 
 [Watch the Demo Video](https://drive.google.com/file/d/1sGFCOPUqPhGjhZXtTi239M5AiwsP__kn/view?usp=sharing)
 
-
 ## :wrench: Installation
 1. Clone the repository:
    ```bash
